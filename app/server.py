@@ -1,4 +1,5 @@
 import os
+from waitress import serve
 
 from flask import Flask
 
@@ -10,6 +11,12 @@ def index():
     return "Привет от приложения Flask"
 
 
+@app.route("/hello")
+def hello():
+    return "Еще один привет от Flask"
+
+
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
+    serve(app, host='0.0.0.0', port=port)
+    # app.run(host='0.0.0.0', port=port)
